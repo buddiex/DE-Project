@@ -1,23 +1,18 @@
-# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
-
 version: '3'
 
-# Define services
 services:
-  # App Service
   twitter-producer:
     container_name: twitter-ingest-container
-    # Configuration for building the docker image for the service
     build:
-      context: twitter-producer-svc # Use an image built from the specified dockerfile in the current directory.
+      context: twitter-producer-svc 
       dockerfile: Dockerfile
     ports:
-      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+      - "8080:8080"
     restart: unless-stopped
     
     depends_on: 
-      - kafka-1 # This service depends on redis. Start that first.
-    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - kafka-1 
+    networks: 
       - backend
 
   zookeeper-1:
@@ -78,13 +73,6 @@ services:
     entrypoint: python /app/app.py
     restart: unless-stopped
 
-  # es01:
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
-  #   volumes:
-  #     - data01:/usr/share/elasticsearch/data
-  #   ports:
-  #     - 9200:9200
-
   elasticsearch:
     container_name: elasticsearch-container
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
@@ -116,9 +104,7 @@ networks:
 # networks:
 #   backend:
 
-# networks:
-#   elastic:
-#     driver: bridge
+
 volumes:
   data01:
     driver: local
