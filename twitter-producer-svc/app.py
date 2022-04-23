@@ -9,7 +9,7 @@ producer = KafkaProducer(bootstrap_servers=[KAFKA_SVC],
               api_version=(7,1,0),
               )
 
-future = producer.send('my-topic', b'raw_bytes')
+# future = producer.send('my-topic', b'raw_bytes')
 
 # Block for 'synchronous' sends
 # try:
