@@ -15,4 +15,3 @@ kafka-run-class kafka.admin.ConsumerGroupCommand \
 kafka-console-producer --topic quickstart-events --bootstrap-server localhost:29092
 kafka-console-consumer --topic quickstart-events --from-beginning --bootstrap-server localhost:29092
 kafka-console-consumer --topic home-sensehat-temperature --from-beginning --bootstrap-server localhost:29092
-

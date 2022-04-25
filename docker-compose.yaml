@@ -17,17 +17,17 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     command: tail -F anything
-    entrypoint: python /app/app.py
+    # entrypoint: python /app/app.py
     
-  # spark:
-  #   container_name: spark-container
-  #   build:
-  #     context: spark-svc
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - twitter-producer
-  #   # entrypoint: python /app/app.py
+  spark:
+    container_name: spark-container
+    build:
+      context: spark-svc
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - twitter-producer
+    # entrypoint: python /app/app.py
 
   kafka:
     container_name: kafka-container
