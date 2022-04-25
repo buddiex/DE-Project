@@ -20,7 +20,6 @@ TOPIC = 'home-sensehat-temperature'
 
 
 print("consumming data")
-# To consume latest messages and auto-commit offsets
 consumer = KafkaConsumer(TOPIC,
                          group_id='my-group',
                          bootstrap_servers=KAFKA_SVC,
@@ -28,11 +27,9 @@ consumer = KafkaConsumer(TOPIC,
                          consumer_timeout_ms=1000,
                          auto_offset_reset='earliest',
                          value_deserializer=lambda m: json.loads(m.decode('ascii')))
-                         
 
-print(consumer.topics())
 for message in consumer:
-    # print("here")
+    print("here")
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`
     print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,

@@ -24,9 +24,11 @@ consumer = KafkaConsumer(TOPIC,
                          bootstrap_servers=KAFKA_SVC,
                          api_version=(7, 1, 0),
                          consumer_timeout_ms=1000,
-                         auto_offset_reset='earliest',
-                         value_deserializer=lambda m: json.loads(m.decode('ascii')))
-
+                        #  auto_offset_reset='latest',
+                        #  enable_auto_commit=False,
+                         value_deserializer=lambda m: json.loads(m.decode('ascii'))
+                        )
+consumer.subscribe(TOPIC)
 for message in consumer:
     print("here")
     # message value and key are raw bytes -- decode if necessary!
@@ -35,6 +37,7 @@ for message in consumer:
                                          message.offset, message.key,
                                          message.value))
 
+consumer.close()
 # # consume earliest available messages, don't commit offsets
 # KafkaConsumer(auto_offset_reset='earliest', enable_auto_commit=False)
 

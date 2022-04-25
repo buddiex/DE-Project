@@ -39,6 +39,7 @@ services:
       - zookeeper
     ports:
       - 29092:29092
+      # https://stackoverflow.com/questions/52438822/docker-kafka-w-python-consumer
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
