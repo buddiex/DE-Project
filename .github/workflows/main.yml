@@ -10,7 +10,6 @@ jobs:
         uses: buddiex/DE-Project@ci-cd-setup
         with:
           who-to-greet: 'Mona the Octocat'
-          context: "{{defaultContext}}:hello-world-docker-action"
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
