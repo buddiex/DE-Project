@@ -1,0 +1,30 @@
+name: Test
+on:
+  # pull_request:
+  push:
+    paths:
+      - 'spark-svc/**'
+  workflow_dispatch:
+
+jobs:
+  test-producer:
+    name: Run test on producer
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: docker-compose.yml:.ci/docker-compose-test.yml 
+      SERVICE_TEST_NAME: spark
+      # DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      # DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # - name: Login to DockerHub
+    #   run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+    - name: Build test service
+      run: docker-compose build ${{env.SERVICE_TEST_NAME}}
+
+    - name: Run tests
+      run: docker-compose run ${{env.SERVICE_TEST_NAME}}
