@@ -1,0 +1,8 @@
+
+version: '3'
+services:
+  test-hello:
+    container_name: hello test 
+    build:
+      context: hello-world-docker-action
+      dockerfile: Dockerfile
