@@ -1,4 +1,4 @@
-name: Test
+name: Producer service test 
 on:
   # pull_request:
   push:
