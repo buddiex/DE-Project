@@ -3,10 +3,10 @@ version: '3'
 services:
   twitter-producer: 
     build: 
-      context: Dockerfile-test
+      dockerfile: Dockerfile-test
     command: python /app/test.py
 
   spark:
     build: 
-        context: Dockerfile-test
+        dockerfile: Dockerfile-test
     command: python /app/test.py
