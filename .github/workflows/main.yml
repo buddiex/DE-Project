@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: buddiex/DE-Project@v1
+        uses: buddiex/DE-Project
         with:
           who-to-greet: 'Mona the Octocat'
           context: "{{defaultContext}}:hello-world-docker-action"
