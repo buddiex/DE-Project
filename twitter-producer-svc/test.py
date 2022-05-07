@@ -1,1 +1,1 @@
-print("twitter testing is success")
+print("twitter testing is successful")
