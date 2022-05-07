@@ -20,8 +20,8 @@ jobs:
     # - name: Login to DockerHub
     #   run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-    - name: Build docker images
-      run: docker-compose build 
+    - name: Build test service
+      run: docker-compose build test-hello
 
     - name: Run tests
       run: docker-compose run test-hello
