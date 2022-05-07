@@ -6,3 +6,9 @@ services:
     build:
       context: hello-world-docker-action
       dockerfile: Dockerfile
+
+  twitter-producer: 
+    command: python /app/test.py
+    
+  spark:
+    command: python /app/test.py
