@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       COMPOSE_FILE: docker-compose.yml:.ci/docker-compose-test.yml 
-      DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      # DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      # DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
 
     steps:
     - name: Checkout code
