@@ -3,7 +3,7 @@
 version: '3'
 services:
 
-  twitter-producer:
+  twitter-producer: &producer
     container_name: twitter-ingest-container
     build:
       context: twitter-producer-svc
@@ -80,6 +80,11 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
+
+  test-producer:
+    << : *producer
+    entrypoint: python /app/ddddd.py
+  
 
 volumes:
   data01:
