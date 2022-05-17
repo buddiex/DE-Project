@@ -1,3 +1,4 @@
 kafka-python
 python-twitter
-# confluent-kafka
+tweepy
+#confluent-kafka

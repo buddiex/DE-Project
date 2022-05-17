@@ -1,9 +1,17 @@
 import requests
+<<<<<<< Updated upstream
 
+=======
+import os
+>>>>>>> Stashed changes
 import json
 
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
+<<<<<<< Updated upstream
+=======
+#bearer_token = //os.environ.get('bearer_token')
+>>>>>>> Stashed changes
 bearer_token = ""
 
 
@@ -93,4 +101,8 @@ def main():
 
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     main()
+=======
+    main()
+>>>>>>> Stashed changes
