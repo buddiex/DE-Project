@@ -11,12 +11,12 @@ services:
     ports:
       - "8080:8080"
     restart: unless-stopped
-    # depends_on:
-    #   - kafka
-    # environment:
-    #   REDIS_HOST: redis
-    #   REDIS_PORT: 6379
-    # command: tail -F anything
+    depends_on:
+      - kafka
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    command: tail -F anything
     # entrypoint: python /app/app.py
     
   spark:
@@ -32,11 +32,14 @@ services:
   kafka:
     container_name: kafka-container
     # platform: linux/x86_64 # uncomment for m1 arm based macs
+
+
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
     ports:
       - 29092:29092
+      # https://stackoverflow.com/questions/52438822/docker-kafka-w-python-consumer
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -55,31 +58,31 @@ services:
     ports:
       - 22181:2181
 
-  redis:
-    container_name: redis-container
-    image: "redis:alpine"
-    restart: unless-stopped
+  # redis:
+  #   container_name: redis-container
+  #   image: "redis:alpine"
+  #   restart: unless-stopped
 
-  elasticsearch:
-    container_name: elasticsearch-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
-    environment:
-      - xpack.security.enabled=false
-      - "discovery.type=single-node"
-    ports:
-      - 9200:9200
-    volumes:
-      - data01:/usr/share/elasticsearch/data
+  # elasticsearch:
+  #   container_name: elasticsearch-container
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+  #   environment:
+  #     - xpack.security.enabled=false
+  #     - "discovery.type=single-node"
+  #   ports:
+  #     - 9200:9200
+  #   volumes:
+  #     - data01:/usr/share/elasticsearch/data
 
-  kibana:
-    container_name: kibana-container
-    image: docker.elastic.co/kibana/kibana:7.11.0
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    depends_on:
-      - elasticsearch
-    ports:
-      - 5601:5601
+  # kibana:
+  #   container_name: kibana-container
+  #   image: docker.elastic.co/kibana/kibana:7.11.0
+  #   environment:
+  #     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  #   depends_on:
+  #     - elasticsearch
+  #   ports:
+  #     - 5601:5601
 
   test-producer:
     << : *producer
