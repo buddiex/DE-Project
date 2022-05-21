@@ -1,0 +1,12 @@
+
+version: '3'
+services:
+  twitter-producer: 
+    build: 
+      dockerfile: Dockerfile-test
+    command: python /app/test.py
+
+  spark:
+    build: 
+        dockerfile: Dockerfile-test
+    command: python /app/test.py
