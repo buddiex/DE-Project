@@ -21,8 +21,7 @@ text = "a,b,c,d,e,f".split(",")
 while True:
 
     producer.send(TOPIC,{random.choice(text): "2020-08-12 23:31:19.102347", "temperature":random.choice(text) }
-                  ).add_callback(on_send_success).add_errback(on_send_error)
+                 ).add_callback(on_send_success).add_errback(on_send_error)
+    producer.flush()
+    
     time.sleep(2)
-
-
-producer.flush()
