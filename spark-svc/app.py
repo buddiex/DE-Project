@@ -42,7 +42,7 @@ for message in consumer:
                                          message.offset, message.key,
                                          message.value))
 
-
+# save to elastisearch
 
 
 # # StopIteration if no message after 1sec
